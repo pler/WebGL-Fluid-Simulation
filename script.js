@@ -1169,20 +1169,18 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
-interval = Math.floor(Math.random() * 3000);
-
 var autosplat = function() {
     if(!config.PAUSED) {
         splatStack.push(1);
     }
     
+    var interval = Math.floor(Math.random() * 2000);
     console.log("autosplat x " + interval);
-
     setTimeout(autosplat, interval);
 }
 
+var interval = Math.floor(Math.random() * 2000);
 console.log("autosplat y " + interval);
-
 setTimeout(autosplat, interval);
 
 let lastUpdateTime = Date.now();
