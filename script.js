@@ -1169,19 +1169,21 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
+interval = Math.floor(Math.random() * 3000);
+
 var autosplat = function() {
     if(!config.PAUSED) {
         splatStack.push(1);
     }
     
-    console.log("autosplat");
+    console.log("autosplat x " + interval);
 
-    setTimeout(autosplat, 1*1000);
+    setTimeout(autosplat, interval);
 }
 
-console.log("autosplat");
+console.log("autosplat y " + interval);
 
-setTimeout(autosplat, 1*1000);
+setTimeout(autosplat, interval);
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
