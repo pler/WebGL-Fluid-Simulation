@@ -1173,19 +1173,18 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
-console.log("autosplat xyz 123 exp abc");
+console.log("autosplat xyz 123 exp abc aadadaw");
 
-var calc_interval= function() {
-    var bpm = config.AUTOSPLAT_BPM;
+var calc_interval= function(bpm) {
+    var bpm = 130;
     var bpms = 60000.0 / bpm;
     return bpms / Math.pow(2, Math.floor(Math.random() * 6) - 3);
 }
 
 var autosplat = function() {
     if(!config.PAUSED) {
-        splatStack.push(config.AUTOSPLAT_COUNT);
+        splatStack.push(1);
     }
-    
     setTimeout(autosplat, calc_interval());
 }
 
