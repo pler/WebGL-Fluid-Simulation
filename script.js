@@ -83,7 +83,7 @@ let config = {
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
     AUTOSPLAT_BPM: 150,
-    AUTOSPLAT_COUNT: 1
+    AUTOSPLAT_COUNT: 3
 }
 
 function pointerPrototype () {
@@ -223,11 +223,11 @@ function startGUI () {
     gui.add({ fun: () => {
         splatStack.push(parseInt(Math.random() * 20) + 5);
     } }, 'fun').name('Random splats');
-    
+
     let autosplatFolder = gui.addFolder('Auto-splat');
-    autosplatFolder.add(config, 'AUTOSPLAT_BPM', 50, 200).name('auto-splat BPM');
+    autosplatFolder.add(config, 'AUTOSPLAT_BPM', 100, 250).name('auto-splat BPM');
     autosplatFolder.add(config, 'AUTOSPLAT_COUNT', 1, 10, 1).name('number of auto-splats');
-    
+
     let bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
     bloomFolder.add(config, 'BLOOM_INTENSITY', 0.1, 2.0).name('intensity');
@@ -1177,10 +1177,13 @@ multipleSplats(parseInt(Math.random() * 20) + 5);
 
 console.log("autosplat xyz 123 exp abc aadadaw");
 
-var calc_interval= function(bpm) {
+var calc_interval= function() {
     var bpm = config.AUTOSPLAT_BPM;
-    var bpms = 60000.0 / bpm;
-    return bpms / Math.pow(2, Math.floor(Math.random() * 6) - 3);
+    var bpms = (60.0 / bpm) * 1000;
+    var factor = Math.pow(2, Math.floor(Math.random() * 2));
+    var result = bpms / factor;
+    console.log(bpm, bpms, factor, result);
+    return result;
 }
 
 var autosplat = function() {
@@ -1398,7 +1401,7 @@ function applyBloom (source, destination) {
 
     gl.blendFunc(gl.ONE, gl.ONE);
     gl.enable(gl.BLEND);
-
+http://www.beatsperminuteonline.com/
     for (let i = bloomFramebuffers.length - 2; i >= 0; i--) {
         let baseTex = bloomFramebuffers[i];
         gl.uniform2f(bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
