@@ -221,6 +221,11 @@ function startGUI () {
     gui.add({ fun: () => {
         splatStack.push(parseInt(Math.random() * 20) + 5);
     } }, 'fun').name('Random splats');
+    
+    let autosplatFolder = gui.addFolder('Auto-splat');
+    autosplatFolder.add(config, 'AUTOSPLAT_ENABLED').name('enable auto-splat').listen();    
+    autosplatFolder.add(config, 'AUTOSPLAT_BPM', 50, 200).name('auto-splat BPM');
+    autosplatFolder.add(config, 'AUTOSPLAT_COUNT', 1, 10, 1).name('number of auto-splats');
 
     let bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
@@ -1169,21 +1174,23 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
-console.log("autosplat xyz 123 exp");
+console.log("autosplat xyz 123 exp abc");
 
-var autosplat = function() {
-    if(!config.PAUSED) {
-        splatStack.push(1);
-    }
-    
-    var interval = Math.exp(-1 * Math.floor(Math.random() * 10) *0.6) * 1000;
-    console.log("autosplat x " + interval);
-    setTimeout(autosplat, interval);
+var calc_interval() {
+    var bpm = config.AUTOSPLAT_BPM;
+    var bpms = 60000.0 / bpm;
+    return bpms / Math.pow(2, Math.floor(Math.random() * 6) - 3);
 }
 
-var interval =  Math.exp(-1 * Math.floor(Math.random() * 10) *0.6) * 1000;
-console.log("autosplat y " + interval);
-setTimeout(autosplat, interval);
+var autosplat = function() {
+    if(!config.AUTOSPLAT_ENABLED && config.PAUSED) {
+        splatStack.push(config.AUTOSPLAT_COUNT);
+    }
+    
+    setTimeout(autosplat, calc_interval());
+}
+
+setTimeout(autosplat, calc_interval());
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
