@@ -1169,7 +1169,7 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
-console.log("autosplat xyz 123");
+console.log("autosplat xyz 123 exp");
 
 var autosplat = function() {
     if(!config.PAUSED) {
