@@ -223,7 +223,6 @@ function startGUI () {
     } }, 'fun').name('Random splats');
     
     let autosplatFolder = gui.addFolder('Auto-splat');
-    autosplatFolder.add(config, 'AUTOSPLAT_ENABLED').name('enable auto-splat').listen();    
     autosplatFolder.add(config, 'AUTOSPLAT_BPM', 50, 200).name('auto-splat BPM');
     autosplatFolder.add(config, 'AUTOSPLAT_COUNT', 1, 10, 1).name('number of auto-splats');
 
