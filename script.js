@@ -1183,7 +1183,7 @@ var calc_interval= function() {
 }
 
 var autosplat = function() {
-    if(!config.AUTOSPLAT_ENABLED && config.PAUSED) {
+    if(!config.PAUSED) {
         splatStack.push(config.AUTOSPLAT_COUNT);
     }
     
