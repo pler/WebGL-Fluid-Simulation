@@ -1173,9 +1173,13 @@ var autosplat = function() {
     if(!config.PAUSED) {
         splatStack.push(1);
     }
+    
+    console.log("autosplat");
 
     setTimeout(autosplat, 1*1000);
 }
+
+console.log("autosplat");
 
 setTimeout(autosplat, 1*1000);
 
