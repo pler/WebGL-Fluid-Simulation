@@ -14,7 +14,7 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,1
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
@@ -1169,17 +1169,19 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
+console.log("autosplat xyz 123");
+
 var autosplat = function() {
     if(!config.PAUSED) {
         splatStack.push(1);
     }
     
-    var interval = Math.floor(Math.random() * 2000);
+    var interval = Math.exp(-1 * Math.floor(Math.random() * 10) *0.6) * 1000;
     console.log("autosplat x " + interval);
     setTimeout(autosplat, interval);
 }
 
-var interval = Math.floor(Math.random() * 2000);
+var interval =  Math.exp(-1 * Math.floor(Math.random() * 10) *0.6) * 1000;
 console.log("autosplat y " + interval);
 setTimeout(autosplat, interval);
 
