@@ -1169,6 +1169,16 @@ updateKeywords();
 initFramebuffers();
 multipleSplats(parseInt(Math.random() * 20) + 5);
 
+var autosplat = function() {
+    if(!config.PAUSED) {
+        splatStack.push(1);
+    }
+
+    setTimeout(autosplat, 1*1000);
+}
+
+setTimeout(autosplat, 1*1000);
+
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
 update();
