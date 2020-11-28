@@ -1176,7 +1176,7 @@ multipleSplats(parseInt(Math.random() * 20) + 5);
 
 console.log("autosplat xyz 123 exp abc");
 
-var calc_interval() {
+var calc_interval= function() {
     var bpm = config.AUTOSPLAT_BPM;
     var bpms = 60000.0 / bpm;
     return bpms / Math.pow(2, Math.floor(Math.random() * 6) - 3);
