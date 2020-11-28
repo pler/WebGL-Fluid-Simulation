@@ -222,10 +222,6 @@ function startGUI () {
         splatStack.push(parseInt(Math.random() * 20) + 5);
     } }, 'fun').name('Random splats');
     
-    let autosplatFolder = gui.addFolder('Auto-splat');
-    autosplatFolder.add(config, 'AUTOSPLAT_BPM', 50, 200).name('auto-splat BPM');
-    autosplatFolder.add(config, 'AUTOSPLAT_COUNT', 1, 10, 1).name('number of auto-splats');
-
     let bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
     bloomFolder.add(config, 'BLOOM_INTENSITY', 0.1, 2.0).name('intensity');
