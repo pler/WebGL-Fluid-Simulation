@@ -82,6 +82,8 @@ let config = {
     SUNRAYS: true,
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
+    AUTOSPLAT_BPM: 150,
+    AUTOSPLAT_COUNT: 1
 }
 
 function pointerPrototype () {
@@ -221,6 +223,10 @@ function startGUI () {
     gui.add({ fun: () => {
         splatStack.push(parseInt(Math.random() * 20) + 5);
     } }, 'fun').name('Random splats');
+    
+    let autosplatFolder = gui.addFolder('Auto-splat');
+    autosplatFolder.add(config, 'AUTOSPLAT_BPM', 50, 200).name('auto-splat BPM');
+    autosplatFolder.add(config, 'AUTOSPLAT_COUNT', 1, 10, 1).name('number of auto-splats');
     
     let bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
@@ -1172,14 +1178,14 @@ multipleSplats(parseInt(Math.random() * 20) + 5);
 console.log("autosplat xyz 123 exp abc aadadaw");
 
 var calc_interval= function(bpm) {
-    var bpm = 130;
+    var bpm = config.AUTOSPLAT_BPM;
     var bpms = 60000.0 / bpm;
     return bpms / Math.pow(2, Math.floor(Math.random() * 6) - 3);
 }
 
 var autosplat = function() {
     if(!config.PAUSED) {
-        splatStack.push(1);
+        splatStack.push(config.AUTOSPLAT_COUNT);
     }
     setTimeout(autosplat, calc_interval());
 }
